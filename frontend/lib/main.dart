@@ -5,6 +5,7 @@ import 'package:frontend/core/services/SocketService.dart';
 import 'package:frontend/core/theme/theme.dart';
 import 'package:frontend/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:frontend/features/auth/presentation/pages/login_page.dart';
+import 'package:frontend/features/auth/presentation/pages/login_prompt.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,9 +27,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'ChatApp',
-        theme: AppTheme.darkTheme,
+        theme: AppTheme.lightTheme,
         home: const LoginPage(),
-        routes: {'/login': (_) => const LoginPage()},
+        routes: {'/login': (_) => const LoginPage(), '/register': (_) => const RegisterPage()},
       ),
     );
   }

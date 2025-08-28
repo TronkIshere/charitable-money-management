@@ -10,40 +10,80 @@ class FontsSizes {
 }
 
 class DefaultColors {
+  // Core brand colors
+  static const Color primaryGreen = Color(0xFF4CAF50);
+  static const Color lightGreen = Color(0xFFA5D6A7);
+  static const Color darkGreen = Color(0xFF2E7D32);
+  static const Color white = Color(0xFFFFFFFF);
+
+  // Text & background
   static const Color greyText = Color(0xFFB3B9C9);
-  static const Color whiteText = Color(0xFFFFFFFF);
-  static const Color senderMessage = Color(0xFF7A8194);
-  static const Color receiverMessage = Color(0xFF737E4E);
-  static const Color sentMessageInput = Color(0xFF3D4354);
-  static const Color messageListPage = Color(0xFF292F3F);
-  static const Color buttonColor = Color(0xFF7A8194);
+  static const Color background = Color(0xFFF9FAF9);
+
+  // Chat & UI elements
+  static const Color senderMessage = lightGreen;
+  static const Color receiverMessage = Color(0xFFE8F5E9);
+  static const Color sentMessageInput = Color(0xFFE0E0E0);
+  static const Color messageListPage = Color(0xFFF1F8E9);
+  static const Color buttonColor = primaryGreen;
+
+  static const Color accentGreen = Color(0xFF66BB6A);
+  static const Color danger = Color(0xFFE53935);
+  static const Color warning = Color(0xFFFFB300);
+  static const Color info = Color(0xFF29B6F6);
 }
 
 class AppTheme {
-  static ThemeData get darkTheme {
+  static ThemeData get lightTheme {
     return ThemeData(
-      primaryColor: Colors.white,
-      scaffoldBackgroundColor: Color(0xFF1B202D),
+      primaryColor: DefaultColors.primaryGreen,
+      scaffoldBackgroundColor: DefaultColors.background,
+      colorScheme: const ColorScheme.light(
+        primary: DefaultColors.primaryGreen,
+        secondary: DefaultColors.darkGreen,
+        background: DefaultColors.background,
+        onPrimary: DefaultColors.white,
+        onSecondary: DefaultColors.white,
+      ),
+      appBarTheme: const AppBarTheme(
+        backgroundColor: DefaultColors.primaryGreen,
+        foregroundColor: DefaultColors.white,
+        elevation: 0,
+      ),
       textTheme: TextTheme(
         titleMedium: GoogleFonts.alegreyaSans(
           fontSize: FontsSizes.medium,
-          color: Colors.white,
+          color: DefaultColors.darkGreen,
+          fontWeight: FontWeight.bold,
         ),
         titleLarge: GoogleFonts.alegreyaSans(
           fontSize: FontsSizes.large,
-          color: Colors.white,
+          color: DefaultColors.darkGreen,
+          fontWeight: FontWeight.bold,
         ),
-        bodySmall: GoogleFonts.alegreyaSans(
-          fontSize: FontsSizes.standardUp,
-          color: Colors.white,
+        bodySmall: GoogleFonts.alegreyaSans(fontSize: FontsSizes.standard, color: DefaultColors.greyText),
+        bodyMedium: GoogleFonts.alegreyaSans(fontSize: FontsSizes.standard, color: Colors.black87),
+        bodyLarge: GoogleFonts.alegreyaSans(fontSize: FontsSizes.standardUp, color: Colors.black87),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: DefaultColors.primaryGreen,
+          foregroundColor: DefaultColors.white,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
         ),
-        bodyMedium: GoogleFonts.alegreyaSans(
-          fontSize: FontsSizes.standard,
-          color: Colors.white,
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        filled: true,
+        fillColor: DefaultColors.white,
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: DefaultColors.lightGreen),
         ),
-        bodyLarge: GoogleFonts.alegreyaSans(
-          fontSize: FontsSizes.standardUp,
-          color: Colors.white,
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: DefaultColors.primaryGreen, width: 2),
         ),
       ),
     );
