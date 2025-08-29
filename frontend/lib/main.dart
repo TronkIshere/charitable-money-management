@@ -4,6 +4,7 @@ import 'package:frontend/core/di/injection_container.dart';
 import 'package:frontend/core/services/SocketService.dart';
 import 'package:frontend/core/theme/theme.dart';
 import 'package:frontend/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:frontend/features/auth/presentation/pages/forgot_password_page.dart';
 import 'package:frontend/features/auth/presentation/pages/login_page.dart';
 import 'package:frontend/features/auth/presentation/pages/register_page.dart';
 
@@ -28,8 +29,12 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'ChatApp',
         theme: AppTheme.lightTheme,
-        home: const LoginPage(),
-        routes: {'/login': (_) => const LoginPage(), '/register': (_) => const RegisterPage()},
+        home: const ForgotPasswordPage(),
+        routes: {
+          '/login': (_) => const LoginPage(),
+          '/register': (_) => const RegisterPage(),
+          '/forgotPassword': (_) => const ForgotPasswordPage(),
+        },
       ),
     );
   }

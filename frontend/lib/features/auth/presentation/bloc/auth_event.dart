@@ -30,3 +30,21 @@ class LoginEvent extends AuthEvent {
 
   LoginEvent({required this.email, required this.password});
 }
+
+class GetOtpEvent extends AuthEvent {
+  final String email;
+
+  GetOtpEvent({required this.email});
+}
+
+class CheckOtpEvent extends AuthEvent {
+  final String otp;
+
+  CheckOtpEvent({required this.otp});
+}
+
+class SendNewPasswordEvent extends AuthEvent {
+  final String password;
+
+  SendNewPasswordEvent({required this.password});
+}

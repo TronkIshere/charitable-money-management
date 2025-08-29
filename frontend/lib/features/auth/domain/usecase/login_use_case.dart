@@ -2,11 +2,11 @@ import 'package:frontend/features/auth/domain/entity/user_entity.dart';
 import 'package:frontend/features/auth/domain/repositories/auth_repository.dart';
 
 class LoginUseCase {
-  final AuthRepository repository;
+  final AuthRepository authRepository;
 
-  LoginUseCase({required this.repository});
+  LoginUseCase({required this.authRepository});
 
   Future<UserEntity> call(String email, String password) {
-    return repository.login(email, password);
+    return authRepository.login(email, password);
   }
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:frontend/features/auth/presentation/bloc/login_prompt.dart';
-import 'package:frontend/features/auth/presentation/bloc/register_page.dart';
+import 'package:frontend/features/auth/presentation/bloc/auth_event.dart';
+import 'package:frontend/features/auth/presentation/bloc/auth_state.dart';
 import 'package:frontend/features/auth/presentation/widgets/auth_button.dart';
 import 'package:frontend/features/auth/presentation/widgets/auth_input_field.dart';
 import 'package:frontend/features/auth/presentation/widgets/login_prompt.dart';
@@ -60,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
                 },
                 listener: (context, state) {
                   if (state is AuthSuccess) {
-                    Navigator.pushNamedAndRemoveUntil(context, '/conversationPage', (route) => false);
+                    Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
                   }
                   if (state is AuthFailure) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.error)));
@@ -104,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
           title: "",
           subtitle: "Quên mật khẩu?",
           onTap: () {
-            Navigator.pushNamed(context, '/forgetPassword');
+            Navigator.pushNamed(context, '/forgotPassword');
           },
         ),
       ],

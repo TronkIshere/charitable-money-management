@@ -3,9 +3,12 @@ import 'package:frontend/core/api/api_client.dart';
 import 'package:frontend/features/auth/data/datasource/auth_remote_data_source.dart';
 import 'package:frontend/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:frontend/features/auth/domain/repositories/auth_repository.dart';
+import 'package:frontend/features/auth/domain/usecase/check_otp_use_case.dart';
+import 'package:frontend/features/auth/domain/usecase/get_otp_use_case.dart';
 import 'package:frontend/features/auth/domain/usecase/login_use_case.dart';
 import 'package:frontend/features/auth/domain/usecase/register_use_case.dart';
 import 'package:frontend/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:frontend/features/auth/presentation/pages/send_new_password_use_case.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 
@@ -24,9 +27,20 @@ Future<void> initDependencies() async {
   sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(authRemoteDataSource: sl()));
 
   // UseCases
-  sl.registerLazySingleton(() => LoginUseCase(repository: sl()));
-  sl.registerLazySingleton(() => RegisterUseCase(repository: sl()));
+  sl.registerLazySingleton(() => LoginUseCase(authRepository: sl()));
+  sl.registerLazySingleton(() => RegisterUseCase(authRepository: sl()));
+  sl.registerLazySingleton(() => GetOtpUseCase(authRepository: sl()));
+  sl.registerLazySingleton(() => CheckOtpUseCase(authRepository: sl()));
+  sl.registerLazySingleton(() => SendNewPassword(authRepository: sl()));
 
   // Blocs
-  sl.registerFactory(() => AuthBloc(loginUseCase: sl(), registerUseCase: sl()));
+  sl.registerFactory(
+    () => AuthBloc(
+      loginUseCase: sl(),
+      registerUseCase: sl(),
+      getOtpUseCase: sl(),
+      checkOtpUseCase: sl(),
+      sendNewPasswordUseCase: sl(),
+    ),
+  );
 }
