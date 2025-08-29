@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/core/theme/theme.dart';
 
 class DateInputField extends StatelessWidget {
   final String label;
@@ -35,12 +36,12 @@ class DateInputField extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         child: Row(
           children: [
-            Icon(icon, color: Colors.grey),
+            Icon(icon, color: DefaultColors.greyText),
             const SizedBox(width: 10),
             Expanded(
               child: Text(
                 selectedDate == null ? label : "${selectedDate!.day}/${selectedDate!.month}/${selectedDate!.year}",
-                style: TextStyle(color: selectedDate == null ? Colors.grey : Colors.white),
+                style: TextStyle(color: selectedDate == null ? DefaultColors.greyText : Colors.white),
               ),
             ),
           ],

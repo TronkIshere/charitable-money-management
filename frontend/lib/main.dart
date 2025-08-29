@@ -5,7 +5,7 @@ import 'package:frontend/core/services/SocketService.dart';
 import 'package:frontend/core/theme/theme.dart';
 import 'package:frontend/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:frontend/features/auth/presentation/pages/login_page.dart';
-import 'package:frontend/features/auth/presentation/pages/login_prompt.dart';
+import 'package:frontend/features/auth/presentation/pages/register_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
