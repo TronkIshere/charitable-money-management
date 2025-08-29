@@ -44,7 +44,7 @@ class _AvatarPickerState extends State<AvatarPicker> {
         const SizedBox(height: 8),
         Text(
           "Chọn ảnh đại diện",
-          style: TextStyle(color: DefaultColors.greyText, fontSize: FontsSizes.standardUp),
+          style: const TextStyle(color: DefaultColors.greyText, fontSize: FontsSizes.standardUp),
         ),
       ],
     );

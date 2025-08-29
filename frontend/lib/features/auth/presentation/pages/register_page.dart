@@ -71,13 +71,13 @@ class _RegisterPageState extends State<RegisterPage> {
                   _selectedImage = file;
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               AuthInputField(hint: 'Họ và tên', icon: Icons.person, controller: _usernameController),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               AuthInputField(hint: 'Email', icon: Icons.mail, controller: _emailController),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               AuthInputField(hint: 'Mật khẩu', icon: Icons.lock, controller: _passwordController, isPassword: true),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               AuthDateInputField(
                 label: "Chọn ngày sinh",
                 selectedDate: _selectedDate,
@@ -85,7 +85,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   setState(() => _selectedDate = date);
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               AuthDropBar(
                 label: "Chọn giới tính",
                 selectedValue: _selectedGender,
@@ -96,13 +96,13 @@ class _RegisterPageState extends State<RegisterPage> {
                   });
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               AuthInputField(hint: "Số điện thoại", icon: Icons.phone, controller: _phoneNumberController),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               AuthInputField(hint: "Địa chỉ", icon: Icons.home, controller: _addressController),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               _buildLoginLine(),
-              SizedBox(height: 20),
+              const SizedBox(height: 30),
               BlocConsumer<AuthBloc, AuthState>(
                 builder: (context, state) =>
                     state is AuthLoading ? Center(child: CircularProgressIndicator()) : _buildAuthButton(),
