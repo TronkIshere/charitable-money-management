@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/core/theme/theme.dart';
 
-class AuthInputFiled extends StatelessWidget {
+class AuthInputField extends StatelessWidget {
   final String hint;
   final IconData icon;
   final TextEditingController controller;
   final bool isPassword;
-  const AuthInputFiled({
+
+  const AuthInputField({
     super.key,
     required this.hint,
     required this.icon,
@@ -21,8 +22,6 @@ class AuthInputFiled extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         children: [
-          Icon(icon, color: Colors.grey),
-          SizedBox(width: 10),
           Expanded(
             child: TextField(
               controller: controller,
@@ -30,7 +29,12 @@ class AuthInputFiled extends StatelessWidget {
               decoration: InputDecoration(
                 hintText: hint,
                 hintStyle: TextStyle(color: Colors.grey),
-                border: InputBorder.none,
+                filled: true,
+                fillColor: DefaultColors.sentMessageInput,
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(25), borderSide: BorderSide.none),
+                enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(25), borderSide: BorderSide.none),
+                focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(25), borderSide: BorderSide.none),
+                prefixIcon: Icon(icon, color: Colors.grey),
               ),
               style: TextStyle(color: Colors.white),
             ),

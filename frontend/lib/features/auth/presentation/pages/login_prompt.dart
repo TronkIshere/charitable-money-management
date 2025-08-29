@@ -18,6 +18,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  DateTime? _selectedDate;
 
   @override
   void dispose() {
@@ -47,11 +48,13 @@ class _RegisterPageState extends State<RegisterPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              AuthInputFiled(hint: 'Username', icon: Icons.person, controller: _usernameController),
+              AuthInputField(hint: 'Họ và tên', icon: Icons.person, controller: _usernameController),
               SizedBox(height: 20),
-              AuthInputFiled(hint: 'Email', icon: Icons.mail, controller: _emailController),
+              AuthInputField(hint: 'Email', icon: Icons.mail, controller: _emailController),
               SizedBox(height: 20),
-              AuthInputFiled(hint: 'Password', icon: Icons.lock, controller: _passwordController, isPassword: true),
+              AuthInputField(hint: 'Mật khẩu', icon: Icons.lock, controller: _passwordController, isPassword: true),
+              SizedBox(height: 20),
+
               SizedBox(height: 20),
               BlocConsumer<AuthBloc, AuthState>(
                 builder: (context, state) => state is AuthLoading
