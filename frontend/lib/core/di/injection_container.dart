@@ -7,8 +7,8 @@ import 'package:frontend/features/auth/domain/usecase/check_otp_use_case.dart';
 import 'package:frontend/features/auth/domain/usecase/get_otp_use_case.dart';
 import 'package:frontend/features/auth/domain/usecase/login_use_case.dart';
 import 'package:frontend/features/auth/domain/usecase/register_use_case.dart';
+import 'package:frontend/features/auth/domain/usecase/send_new_password_use_case.dart';
 import 'package:frontend/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:frontend/features/auth/presentation/pages/send_new_password_use_case.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 
@@ -31,7 +31,7 @@ Future<void> initDependencies() async {
   sl.registerLazySingleton(() => RegisterUseCase(authRepository: sl()));
   sl.registerLazySingleton(() => GetOtpUseCase(authRepository: sl()));
   sl.registerLazySingleton(() => CheckOtpUseCase(authRepository: sl()));
-  sl.registerLazySingleton(() => SendNewPassword(authRepository: sl()));
+  sl.registerLazySingleton(() => SendNewPasswordUseCase(authRepository: sl()));
 
   // Blocs
   sl.registerFactory(
