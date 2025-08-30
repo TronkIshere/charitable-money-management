@@ -9,6 +9,14 @@ import 'package:frontend/features/auth/domain/usecase/login_use_case.dart';
 import 'package:frontend/features/auth/domain/usecase/register_use_case.dart';
 import 'package:frontend/features/auth/domain/usecase/send_new_password_use_case.dart';
 import 'package:frontend/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:frontend/features/home/data/datasource/home_remote_data_source.dart';
+import 'package:frontend/features/home/data/repositories/home_repository_impl.dart';
+import 'package:frontend/features/home/domain/repositories/home_repository.dart';
+import 'package:frontend/features/home/domain/usecase/fetch_campaigns_use_case.dart';
+import 'package:frontend/features/home/domain/usecase/fetch_notifications_use_case.dart';
+import 'package:frontend/features/home/domain/usecase/mark_notification_as_read_use_case.dart';
+import 'package:frontend/features/home/domain/usecase/search_campaigns_use_case.dart';
+import 'package:frontend/features/home/presentation/bloc/home_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 
@@ -22,9 +30,11 @@ Future<void> initDependencies() async {
 
   // Data sources
   sl.registerLazySingleton<AuthRemoteDataSource>(() => AuthRemoteDataSource(apiClient: sl()));
+  sl.registerLazySingleton<HomeRemoteDataSource>(() => HomeRemoteDataSource(apiClient: sl()));
 
   // Repositories
   sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(authRemoteDataSource: sl()));
+  sl.registerLazySingleton<HomeRepository>(() => HomeRepositoryImpl(homeRemoteDataSource: sl()));
 
   // UseCases
   sl.registerLazySingleton(() => LoginUseCase(authRepository: sl()));
@@ -32,6 +42,12 @@ Future<void> initDependencies() async {
   sl.registerLazySingleton(() => GetOtpUseCase(authRepository: sl()));
   sl.registerLazySingleton(() => CheckOtpUseCase(authRepository: sl()));
   sl.registerLazySingleton(() => SendNewPasswordUseCase(authRepository: sl()));
+
+  sl.registerLazySingleton(() => FetchCampaignsUseCase(homeRepository: sl()));
+  sl.registerLazySingleton(() => FetchNotificationsUseCase(homeRepository: sl()));
+  sl.registerLazySingleton(() => MarkNotificationAsReadUseCase(homeRepository: sl()));
+
+  sl.registerLazySingleton(() => SearchCampaignsUseCase(homeRepository: sl()));
 
   // Blocs
   sl.registerFactory(
@@ -41,6 +57,15 @@ Future<void> initDependencies() async {
       getOtpUseCase: sl(),
       checkOtpUseCase: sl(),
       sendNewPasswordUseCase: sl(),
+    ),
+  );
+
+  sl.registerFactory(
+    () => HomeBloc(
+      fetchNotificationsUseCase: sl(),
+      fetchCampaignsUseCase: sl(),
+      markNotificationAsReadUseCase: sl(),
+      searchCampaignsUseCase: sl(),
     ),
   );
 }

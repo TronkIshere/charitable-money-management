@@ -1,8 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend/core/services/SocketService.dart';
+import 'package:frontend/features/home/data/models/campaign_response.dart';
 import 'package:frontend/features/home/domain/usecase/fetch_campaigns_use_case.dart';
 import 'package:frontend/features/home/domain/usecase/fetch_notifications_use_case.dart';
 import 'package:frontend/features/home/domain/usecase/mark_notification_as_read_use_case.dart';
+import 'package:frontend/features/home/domain/usecase/search_campaigns_use_case.dart';
 import 'package:frontend/features/home/presentation/bloc/home_event.dart';
 import 'package:frontend/features/home/presentation/bloc/home_state.dart';
 
@@ -10,16 +12,24 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final FetchCampaignsUseCase fetchCampaignsUseCase;
   final FetchNotificationsUseCase fetchNotificationsUseCase;
   final MarkNotificationAsReadUseCase markNotificationAsReadUseCase;
+  final SearchCampaignsUseCase searchCampaignsUseCase;
   final SocketService _socketService = SocketService();
+
+  List<CampaignResponse> _allSearchedCampaigns = [];
+  int _currentPage = 1;
+  bool _hasMore = true;
 
   HomeBloc({
     required this.fetchNotificationsUseCase,
     required this.fetchCampaignsUseCase,
     required this.markNotificationAsReadUseCase,
+    required this.searchCampaignsUseCase,
   }) : super(HomeInitial()) {
     on<FetchNotifications>(_onFetchNotifications);
     on<FetchCampaigns>(_onFetchCampaigns);
     on<MarkNotificationAsRead>(_onMarkNotificationAsRead);
+    on<SearchCampaigns>(_onSearchCampaigns);
+    on<LoadMoreCampaigns>(_onLoadMoreCampaigns);
     _initializeSocketListeners();
   }
 
@@ -61,6 +71,36 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       add(FetchNotifications());
     } catch (error) {
       emit(NotificationsError('Failed to mark notification as read'));
+    }
+  }
+
+  Future<void> _onSearchCampaigns(SearchCampaigns event, Emitter<HomeState> emit) async {
+    emit(CampaignsSearchLoading());
+    try {
+      final response = await searchCampaignsUseCase(event.request);
+
+      emit(CampaignsSearchLoaded(searchResponse: response, allCampaigns: response.campaigns, request: event.request));
+    } catch (error) {
+      emit(CampaignsSearchError('Failed to search campaigns'));
+    }
+  }
+
+  Future<void> _onLoadMoreCampaigns(LoadMoreCampaigns event, Emitter<HomeState> emit) async {
+    final currentState = state;
+    if (currentState is! CampaignsSearchLoaded || !currentState.searchResponse.hasNext) {
+      return;
+    }
+
+    try {
+      final nextPageRequest = event.request.copyWith(page: currentState.searchResponse.currentPage + 1);
+
+      final response = await searchCampaignsUseCase(nextPageRequest);
+
+      final allCampaigns = [...currentState.allCampaigns, ...response.campaigns];
+
+      emit(CampaignsSearchLoaded(searchResponse: response, allCampaigns: allCampaigns, request: nextPageRequest));
+    } catch (error) {
+      emit(CampaignsSearchError('Failed to load more campaigns'));
     }
   }
 }

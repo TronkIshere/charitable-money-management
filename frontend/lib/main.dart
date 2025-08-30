@@ -8,6 +8,7 @@ import 'package:frontend/features/auth/presentation/pages/forgot_password_page.d
 import 'package:frontend/features/auth/presentation/pages/login_page.dart';
 import 'package:frontend/features/auth/presentation/pages/register_page.dart';
 import 'package:frontend/features/home/presentation/pages/home_page.dart';
+import 'package:frontend/features/home/presentation/pages/searching_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,12 +31,13 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'ChatApp',
         theme: AppTheme.lightTheme,
-        home: const HomePage(),
+        home: const SearchingPage(),
         routes: {
           '/login': (_) => const LoginPage(),
           '/register': (_) => const RegisterPage(),
           '/forgotPassword': (_) => const ForgotPasswordPage(),
           '/home': (_) => const HomePage(),
+          '/searching': (_) => const SearchingPage(),
         },
       ),
     );

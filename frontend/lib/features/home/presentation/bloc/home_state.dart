@@ -1,4 +1,6 @@
 import 'package:frontend/features/home/data/models/campaign_response.dart';
+import 'package:frontend/features/home/data/models/campaign_search_request.dart';
+import 'package:frontend/features/home/data/models/campaign_search_response.dart';
 import 'package:frontend/features/home/data/models/notification_response.dart';
 
 abstract class HomeState {}
@@ -27,4 +29,19 @@ class CampaignsLoaded extends HomeState {
 class CampaignsError extends HomeState {
   final String message;
   CampaignsError(this.message);
+}
+
+class CampaignsSearchLoading extends HomeState {}
+
+class CampaignsSearchLoaded extends HomeState {
+  final CampaignSearchResponse searchResponse;
+  final List<CampaignResponse> allCampaigns;
+  final CampaignSearchRequest request;
+
+  CampaignsSearchLoaded({required this.searchResponse, required this.allCampaigns, required this.request});
+}
+
+class CampaignsSearchError extends HomeState {
+  final String message;
+  CampaignsSearchError(this.message);
 }

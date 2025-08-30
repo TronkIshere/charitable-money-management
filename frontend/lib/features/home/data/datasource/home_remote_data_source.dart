@@ -1,5 +1,7 @@
 import 'package:frontend/core/api/api_client.dart';
 import 'package:frontend/features/home/data/models/campaign_response.dart';
+import 'package:frontend/features/home/data/models/campaign_search_request.dart';
+import 'package:frontend/features/home/data/models/campaign_search_response.dart';
 import 'package:frontend/features/home/data/models/notification_response.dart';
 
 class HomeRemoteDataSource {
@@ -29,5 +31,16 @@ class HomeRemoteDataSource {
     }, (json) => null);
 
     if (!response.success) throw response.error!;
+  }
+
+  Future<CampaignSearchResponse> searchCampaigns(CampaignSearchRequest request) async {
+    final response = await apiClient.post(
+      '/campaigns/search',
+      request.toJson(),
+      (json) => CampaignSearchResponse.fromJson(json),
+    );
+
+    if (!response.success) throw response.error!;
+    return response.result!;
   }
 }
