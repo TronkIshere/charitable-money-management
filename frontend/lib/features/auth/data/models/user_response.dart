@@ -26,18 +26,4 @@ class UserResponse extends UserEntity {
       avatarUrl: json['avatarUrl'] ?? '',
     );
   }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'username': username,
-      'email': email,
-      'token': token,
-      'phoneNumber': phoneNumber,
-      'address': address,
-      'date': date.toIso8601String(),
-      'gender': gender,
-      'avatarUrl': avatarUrl,
-    };
-  }
 }

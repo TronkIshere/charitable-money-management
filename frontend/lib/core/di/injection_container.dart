@@ -18,7 +18,7 @@ Future<void> initDependencies() async {
   // Core
   sl.registerLazySingleton(() => const FlutterSecureStorage());
   sl.registerLazySingleton(() => http.Client());
-  sl.registerLazySingleton(() => ApiClient(baseUrl: "http://10.0.2.2:6000"));
+  sl.registerLazySingleton(() => ApiClient(baseUrl: "http://10.0.2.2:6000/api/v1"));
 
   // Data sources
   sl.registerLazySingleton<AuthRemoteDataSource>(() => AuthRemoteDataSource(apiClient: sl()));
