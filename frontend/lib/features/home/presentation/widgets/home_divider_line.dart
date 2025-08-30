@@ -1,0 +1,11 @@
+import 'package:flutter/material.dart';
+import 'package:frontend/core/theme/theme.dart';
+
+class HomeDividerLine extends StatelessWidget {
+  const HomeDividerLine({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Divider(height: 1, thickness: 1, color: DefaultColors.primaryGreen);
+  }
+}

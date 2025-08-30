@@ -19,6 +19,7 @@ class DefaultColors {
   // Text & background
   static const Color greyText = Color(0xFF5A5F6D);
   static const Color background = Color(0xFFF9FAF9);
+  static const Color darkText = Color(0xFF1E1E1E);
 
   // Chat & UI elements
   static const Color senderMessage = lightGreen;
