@@ -1,5 +1,5 @@
 import 'package:frontend/core/api/api_client.dart';
-import 'package:frontend/features/home/data/models/notification_response.dart';
+import 'package:frontend/features/user/data/models/notification_response.dart';
 import 'package:frontend/features/user/data/models/notification_search_request.dart';
 import 'package:frontend/features/user/data/models/notification_search_response.dart';
 

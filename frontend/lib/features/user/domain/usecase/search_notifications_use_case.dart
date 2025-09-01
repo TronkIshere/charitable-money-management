@@ -3,11 +3,11 @@ import 'package:frontend/features/user/data/models/notification_search_response.
 import 'package:frontend/features/user/data/repositories/notification_repository.dart';
 
 class SearchNotificationsUseCase {
-  final NotificationRepository repository;
+  final NotificationRepository notificationRepository;
 
-  SearchNotificationsUseCase({required this.repository});
+  SearchNotificationsUseCase({required this.notificationRepository});
 
   Future<NotificationSearchResponse> call(NotificationSearchRequest request) {
-    return repository.searchNotifications(request);
+    return notificationRepository.searchNotifications(request);
   }
 }

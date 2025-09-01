@@ -9,7 +9,9 @@ import 'package:frontend/features/auth/presentation/pages/login_page.dart';
 import 'package:frontend/features/auth/presentation/pages/register_page.dart';
 import 'package:frontend/features/home/presentation/pages/home_page.dart';
 import 'package:frontend/features/home/presentation/pages/searching_page.dart';
+import 'package:frontend/features/user/presentation/pages/introduction_page.dart';
 import 'package:frontend/features/user/presentation/pages/notifications_list_page.dart';
+import 'package:frontend/features/user/presentation/pages/user_profile_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,7 +34,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'ChatApp',
         theme: AppTheme.lightTheme,
-        home: const NotificationsListPage(),
+        home: const HomePage(),
         routes: {
           '/login': (_) => const LoginPage(),
           '/register': (_) => const RegisterPage(),
@@ -40,6 +42,8 @@ class MyApp extends StatelessWidget {
           '/home': (_) => const HomePage(),
           '/searching': (_) => const SearchingPage(),
           '/notifications': (_) => const NotificationsListPage(),
+          '/introduction': (_) => const IntroductionPage(),
+          '/userProfile': (_) => const UserProfilePage(),
         },
       ),
     );

@@ -1,11 +1,11 @@
 import 'package:frontend/features/user/data/repositories/notification_repository.dart';
 
 class MarkNotificationAsReadUseCase {
-  final NotificationRepository repository;
+  final NotificationRepository notificationRepository;
 
-  MarkNotificationAsReadUseCase({required this.repository});
+  MarkNotificationAsReadUseCase({required this.notificationRepository});
 
   Future<void> call(String id) {
-    return repository.markAsRead(id);
+    return notificationRepository.markAsRead(id);
   }
 }

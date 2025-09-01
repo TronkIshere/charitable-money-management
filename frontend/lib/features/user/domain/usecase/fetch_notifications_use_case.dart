@@ -1,12 +1,12 @@
-import 'package:frontend/features/home/data/models/notification_response.dart';
+import 'package:frontend/features/user/data/models/notification_response.dart';
 import 'package:frontend/features/user/data/repositories/notification_repository.dart';
 
 class FetchNotificationsUseCase {
-  final NotificationRepository repository;
+  final NotificationRepository notificationRepository;
 
-  FetchNotificationsUseCase({required this.repository});
+  FetchNotificationsUseCase({required this.notificationRepository});
 
   Future<List<NotificationResponse>> call() {
-    return repository.fetchNotifications();
+    return notificationRepository.fetchNotifications();
   }
 }

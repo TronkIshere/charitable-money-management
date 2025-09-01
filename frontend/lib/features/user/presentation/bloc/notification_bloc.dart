@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/features/home/domain/usecase/fetch_notifications_use_case.dart';
-import 'package:frontend/features/home/domain/usecase/mark_notification_as_read_use_case.dart';
+import 'package:frontend/features/user/domain/usecase/fetch_notifications_use_case.dart';
+import 'package:frontend/features/user/domain/usecase/mark_notification_as_read_use_case.dart';
 import 'package:frontend/features/user/domain/usecase/search_notifications_use_case.dart';
 import 'package:frontend/features/user/presentation/bloc/notification_event.dart';
 import 'package:frontend/features/user/presentation/bloc/notification_state.dart';

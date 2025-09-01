@@ -13,10 +13,20 @@ import 'package:frontend/features/home/data/datasource/home_remote_data_source.d
 import 'package:frontend/features/home/data/repositories/home_repository_impl.dart';
 import 'package:frontend/features/home/domain/repositories/home_repository.dart';
 import 'package:frontend/features/home/domain/usecase/fetch_campaigns_use_case.dart';
-import 'package:frontend/features/home/domain/usecase/fetch_notifications_use_case.dart';
-import 'package:frontend/features/home/domain/usecase/mark_notification_as_read_use_case.dart';
 import 'package:frontend/features/home/domain/usecase/search_campaigns_use_case.dart';
 import 'package:frontend/features/home/presentation/bloc/home_bloc.dart';
+import 'package:frontend/features/user/data/datasource/notification_remote_data_source.dart';
+import 'package:frontend/features/user/data/datasource/user_remote_data_source.dart';
+import 'package:frontend/features/user/data/repositories/notification_repository.dart';
+import 'package:frontend/features/user/data/repositories/user_repository.dart';
+import 'package:frontend/features/user/domain/repositories/notification_repository_impl.dart';
+import 'package:frontend/features/user/domain/repositories/user_repository_impl.dart';
+import 'package:frontend/features/user/domain/usecase/fetch_notifications_use_case.dart';
+import 'package:frontend/features/user/domain/usecase/fetch_user_profile_use_case.dart';
+import 'package:frontend/features/user/domain/usecase/mark_notification_as_read_use_case.dart';
+import 'package:frontend/features/user/domain/usecase/search_notifications_use_case.dart';
+import 'package:frontend/features/user/presentation/bloc/notification_bloc.dart';
+import 'package:frontend/features/user/presentation/bloc/user_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 
@@ -31,10 +41,14 @@ Future<void> initDependencies() async {
   // Data sources
   sl.registerLazySingleton<AuthRemoteDataSource>(() => AuthRemoteDataSource(apiClient: sl()));
   sl.registerLazySingleton<HomeRemoteDataSource>(() => HomeRemoteDataSource(apiClient: sl()));
+  sl.registerLazySingleton<NotificationRemoteDataSource>(() => NotificationRemoteDataSource(apiClient: sl()));
+  sl.registerLazySingleton<UserRemoteDataSource>(() => UserRemoteDataSource(apiClient: sl()));
 
   // Repositories
   sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(authRemoteDataSource: sl()));
   sl.registerLazySingleton<HomeRepository>(() => HomeRepositoryImpl(homeRemoteDataSource: sl()));
+  sl.registerLazySingleton<NotificationRepository>(() => NotificationRepositoryImpl(remoteDataSource: sl()));
+  sl.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(userDataSource: sl()));
 
   // UseCases
   sl.registerLazySingleton(() => LoginUseCase(authRepository: sl()));
@@ -44,10 +58,13 @@ Future<void> initDependencies() async {
   sl.registerLazySingleton(() => SendNewPasswordUseCase(authRepository: sl()));
 
   sl.registerLazySingleton(() => FetchCampaignsUseCase(homeRepository: sl()));
-  sl.registerLazySingleton(() => FetchNotificationsUseCase(homeRepository: sl()));
-  sl.registerLazySingleton(() => MarkNotificationAsReadUseCase(homeRepository: sl()));
-
   sl.registerLazySingleton(() => SearchCampaignsUseCase(homeRepository: sl()));
+
+  sl.registerLazySingleton(() => FetchNotificationsUseCase(notificationRepository: sl()));
+  sl.registerLazySingleton(() => MarkNotificationAsReadUseCase(notificationRepository: sl()));
+  sl.registerLazySingleton(() => SearchNotificationsUseCase(notificationRepository: sl()));
+
+  sl.registerLazySingleton(() => FetchUserProfileUseCase(userRepository: sl()));
 
   // Blocs
   sl.registerFactory(
@@ -68,4 +85,14 @@ Future<void> initDependencies() async {
       searchCampaignsUseCase: sl(),
     ),
   );
+
+  sl.registerFactory(
+    () => NotificationBloc(
+      fetchNotificationsUseCase: sl(),
+      markNotificationAsReadUseCase: sl(),
+      searchNotificationsUseCase: sl(),
+    ),
+  );
+
+  sl.registerFactory(() => UserBloc(fetchUserProfileUseCase: sl()));
 }

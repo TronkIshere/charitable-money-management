@@ -1,12 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend/core/services/SocketService.dart';
-import 'package:frontend/features/home/data/models/campaign_response.dart';
 import 'package:frontend/features/home/domain/usecase/fetch_campaigns_use_case.dart';
-import 'package:frontend/features/home/domain/usecase/fetch_notifications_use_case.dart';
-import 'package:frontend/features/home/domain/usecase/mark_notification_as_read_use_case.dart';
 import 'package:frontend/features/home/domain/usecase/search_campaigns_use_case.dart';
 import 'package:frontend/features/home/presentation/bloc/home_event.dart';
 import 'package:frontend/features/home/presentation/bloc/home_state.dart';
+import 'package:frontend/features/user/domain/usecase/fetch_notifications_use_case.dart';
+import 'package:frontend/features/user/domain/usecase/mark_notification_as_read_use_case.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final FetchCampaignsUseCase fetchCampaignsUseCase;
@@ -14,10 +13,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final MarkNotificationAsReadUseCase markNotificationAsReadUseCase;
   final SearchCampaignsUseCase searchCampaignsUseCase;
   final SocketService _socketService = SocketService();
-
-  List<CampaignResponse> _allSearchedCampaigns = [];
-  int _currentPage = 1;
-  bool _hasMore = true;
 
   HomeBloc({
     required this.fetchNotificationsUseCase,
