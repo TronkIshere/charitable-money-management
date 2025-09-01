@@ -9,6 +9,7 @@ import 'package:frontend/features/auth/presentation/pages/login_page.dart';
 import 'package:frontend/features/auth/presentation/pages/register_page.dart';
 import 'package:frontend/features/home/presentation/pages/home_page.dart';
 import 'package:frontend/features/home/presentation/pages/searching_page.dart';
+import 'package:frontend/features/user/presentation/pages/notifications_list_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,13 +32,14 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'ChatApp',
         theme: AppTheme.lightTheme,
-        home: const SearchingPage(),
+        home: const NotificationsListPage(),
         routes: {
           '/login': (_) => const LoginPage(),
           '/register': (_) => const RegisterPage(),
           '/forgotPassword': (_) => const ForgotPasswordPage(),
           '/home': (_) => const HomePage(),
           '/searching': (_) => const SearchingPage(),
+          '/notifications': (_) => const NotificationsListPage(),
         },
       ),
     );

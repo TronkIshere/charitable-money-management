@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/core/theme/theme.dart';
 
-class AuthAppbar extends StatelessWidget implements PreferredSizeWidget {
+class NotificationsAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final VoidCallback? onBack;
 
-  const AuthAppbar({super.key, required this.title, this.onBack});
+  const NotificationsAppbar({super.key, required this.title, this.onBack});
 
   @override
   Widget build(BuildContext context) {
