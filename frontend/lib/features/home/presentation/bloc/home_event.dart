@@ -1,4 +1,4 @@
-import 'package:frontend/features/home/data/models/campaign_search_request.dart';
+import 'package:frontend/features/campaign/data/models/campaign_search_request.dart';
 
 abstract class HomeEvent {}
 

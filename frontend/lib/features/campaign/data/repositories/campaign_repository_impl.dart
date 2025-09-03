@@ -1,0 +1,20 @@
+import 'package:frontend/features/campaign/data/datasource/campaign_remote_datasource.dart';
+import 'package:frontend/features/campaign/data/models/campaign_response.dart';
+import 'package:frontend/features/campaign/data/models/campaign_search_request.dart';
+import 'package:frontend/features/campaign/data/models/campaign_search_response.dart';
+import 'package:frontend/features/campaign/domain/repositories/campaign_repository.dart';
+
+class CampaignRepositoryImpl extends CampaignRepository {
+  final CampaignRemoteDataSource campaignRemoteDataSource;
+  CampaignRepositoryImpl({required this.campaignRemoteDataSource});
+
+  @override
+  Future<List<CampaignResponse>> fetchCampaigns(List<String> filters) {
+    return campaignRemoteDataSource.fetchCampaigns(filters);
+  }
+
+  @override
+  Future<CampaignSearchResponse> searchCampaigns(CampaignSearchRequest request) {
+    return campaignRemoteDataSource.searchCampaigns(request);
+  }
+}

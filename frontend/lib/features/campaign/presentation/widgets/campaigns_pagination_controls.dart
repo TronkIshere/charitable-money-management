@@ -30,13 +30,6 @@ class CampaignsPaginationControls extends StatelessWidget {
           const SizedBox(width: 20),
           ElevatedButton(onPressed: hasNext ? onNextPage : null, child: const Text("Trang sau")),
           const SizedBox(height: 20),
-          CampaignsPaginationControls(
-            currentPage: currentPage,
-            totalItems: totalItems,
-            itemsPerPage: itemsPerPage,
-            onPreviousPage: onPreviousPage,
-            onNextPage: onNextPage,
-          ),
         ],
       ),
     );

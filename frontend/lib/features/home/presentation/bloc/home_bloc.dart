@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend/core/services/SocketService.dart';
-import 'package:frontend/features/home/domain/usecase/fetch_campaigns_use_case.dart';
-import 'package:frontend/features/home/domain/usecase/search_campaigns_use_case.dart';
+import 'package:frontend/features/campaign/domain/usecase/fetch_campaigns_use_case.dart';
+import 'package:frontend/features/campaign/domain/usecase/search_campaigns_use_case.dart';
 import 'package:frontend/features/home/presentation/bloc/home_event.dart';
 import 'package:frontend/features/home/presentation/bloc/home_state.dart';
 import 'package:frontend/features/user/domain/usecase/fetch_notifications_use_case.dart';

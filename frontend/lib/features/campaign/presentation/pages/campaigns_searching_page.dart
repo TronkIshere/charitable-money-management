@@ -80,7 +80,6 @@ class _CampaignsSearchingPageState extends State<CampaignsSearchingPage> {
             const CampaignsSearchingFilterBar(),
             const SizedBox(height: 10),
             CampaignsSearchingCampaignsList(campaigns: currentCampaigns),
-            const SizedBox(height: 20),
             CampaignsPaginationControls(
               currentPage: currentPage,
               totalItems: campaigns.length,

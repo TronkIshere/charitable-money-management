@@ -1,6 +1,6 @@
-import 'package:frontend/features/home/data/models/campaign_response.dart';
-import 'package:frontend/features/home/data/models/campaign_search_request.dart';
-import 'package:frontend/features/home/data/models/campaign_search_response.dart';
+import 'package:frontend/features/campaign/data/models/campaign_response.dart';
+import 'package:frontend/features/campaign/data/models/campaign_search_request.dart';
+import 'package:frontend/features/campaign/data/models/campaign_search_response.dart';
 import 'package:frontend/features/user/data/models/notification_response.dart';
 
 abstract class HomeState {}

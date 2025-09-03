@@ -1,4 +1,4 @@
-import 'package:frontend/features/home/data/models/campaign_response.dart';
+import 'package:frontend/features/campaign/data/models/campaign_response.dart';
 
 class CampaignSearchResponse {
   final List<CampaignResponse> campaigns;
