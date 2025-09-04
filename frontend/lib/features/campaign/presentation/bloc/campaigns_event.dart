@@ -19,3 +19,8 @@ class LoadMoreCampaigns extends CampaignEvent {
 
   LoadMoreCampaigns({required this.request});
 }
+
+class GetCampaignById extends CampaignEvent {
+  final String id;
+  GetCampaignById({required this.id});
+}

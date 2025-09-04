@@ -1,3 +1,4 @@
+import 'package:frontend/features/campaign/data/models/campaign_response.dart';
 import 'package:frontend/features/campaign/data/models/campaign_search_response.dart';
 
 abstract class CampaignState {}
@@ -14,4 +15,9 @@ class CampaignLoaded extends CampaignState {
 class CampaignError extends CampaignState {
   final String message;
   CampaignError(this.message);
+}
+
+class CampaignDetailLoaded extends CampaignState {
+  final CampaignResponse campaign;
+  CampaignDetailLoaded({required this.campaign});
 }

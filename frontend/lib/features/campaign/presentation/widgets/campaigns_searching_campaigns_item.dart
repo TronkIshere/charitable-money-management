@@ -27,14 +27,7 @@ class CampaignsSearchingCampaignsItem extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Campaign image
-          _buildCampaignImage(),
-          const SizedBox(width: 12),
-
-          // Campaign content
-          _buildCampaignContent(progress),
-        ],
+        children: [_buildCampaignImage(), const SizedBox(width: 12), _buildCampaignContent(progress)],
       ),
     );
   }

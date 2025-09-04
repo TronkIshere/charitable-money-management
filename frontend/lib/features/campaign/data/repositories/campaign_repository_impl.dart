@@ -17,4 +17,9 @@ class CampaignRepositoryImpl extends CampaignRepository {
   Future<CampaignSearchResponse> searchCampaigns(CampaignSearchRequest request) {
     return campaignRemoteDataSource.searchCampaigns(request);
   }
+
+  @override
+  Future<CampaignResponse> getCampaignById(String id) {
+    return campaignRemoteDataSource.getCampaignById(id);
+  }
 }
