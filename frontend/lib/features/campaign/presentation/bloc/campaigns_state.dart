@@ -32,3 +32,14 @@ class ReportCampaignFailure extends CampaignState {
   final String message;
   ReportCampaignFailure(this.message);
 }
+
+class RegisterCampaignInitial extends CampaignState {}
+
+class RegisterCampaignLoading extends CampaignState {}
+
+class RegisterCampaignSuccess extends CampaignState {}
+
+class RegisterCampaignFailure extends CampaignState {
+  final String message;
+  RegisterCampaignFailure(this.message);
+}

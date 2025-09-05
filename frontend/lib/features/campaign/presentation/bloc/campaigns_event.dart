@@ -1,4 +1,5 @@
 import 'package:frontend/features/campaign/data/models/campaign_search_request.dart';
+import 'package:frontend/features/campaign/data/models/register_campaign_request.dart';
 import 'package:frontend/features/campaign/data/models/report_campaign_request.dart';
 
 abstract class CampaignEvent {}
@@ -29,4 +30,9 @@ class GetCampaignById extends CampaignEvent {
 class SendReportCampaign extends CampaignEvent {
   final ReportCampaignRequest request;
   SendReportCampaign(this.request);
+}
+
+class SendRegisterCampaign extends CampaignEvent {
+  final RegisterCampaignRequest request;
+  SendRegisterCampaign(this.request);
 }

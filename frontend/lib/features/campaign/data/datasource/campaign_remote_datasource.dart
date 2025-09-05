@@ -4,6 +4,7 @@ import 'package:frontend/core/api/api_client.dart';
 import 'package:frontend/features/campaign/data/models/campaign_response.dart';
 import 'package:frontend/features/campaign/data/models/campaign_search_request.dart';
 import 'package:frontend/features/campaign/data/models/campaign_search_response.dart';
+import 'package:frontend/features/campaign/data/models/register_campaign_request.dart';
 import 'package:frontend/features/campaign/data/models/report_campaign_request.dart';
 
 class CampaignRemoteDataSource {
@@ -46,7 +47,15 @@ class CampaignRemoteDataSource {
       fields: {'reason': request.reason, 'description': request.description, 'contact': request.contact},
       files: request.attachments.map((path) => File(path)).toList(),
     );
+    if (!response.success) throw response.error!;
+  }
 
+  Future<void> sendRegisterCampaign(RegisterCampaignRequest request) async {
+    final response = await apiClient.multipartPost(
+      '/campaigns/register',
+      fields: request.toFields(),
+      files: [...request.attachments.map((path) => File(path)), ...request.verificationDocs.map((path) => File(path))],
+    );
     if (!response.success) throw response.error!;
   }
 }

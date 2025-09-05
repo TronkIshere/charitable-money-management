@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend/features/campaign/domain/usecase/get_campaign_by_id_use_case.dart';
 import 'package:frontend/features/campaign/domain/usecase/search_campaigns_use_case.dart';
+import 'package:frontend/features/campaign/domain/usecase/send_register_campaign_use_case.dart';
 import 'package:frontend/features/campaign/domain/usecase/send_report_campaign_use_case.dart';
 import 'package:frontend/features/campaign/presentation/bloc/campaigns_event.dart';
 import 'package:frontend/features/campaign/presentation/bloc/campaigns_state.dart';
@@ -9,14 +10,17 @@ class CampaignBloc extends Bloc<CampaignEvent, CampaignState> {
   final SearchCampaignsUseCase searchCampaignsUseCase;
   final GetCampaignByIdUseCase getCampaignByIdUseCase;
   final SendReportCampaignUseCase sendReportCampaignUseCase;
+  final SendRegisterCampaignUseCase sendRegisterCampaignUseCase;
   CampaignBloc({
     required this.searchCampaignsUseCase,
     required this.getCampaignByIdUseCase,
     required this.sendReportCampaignUseCase,
+    required this.sendRegisterCampaignUseCase,
   }) : super(CampaignInitial()) {
     on<SearchCampaigns>(_onSearchCampaigns);
     on<GetCampaignById>(_onGetCampaignById);
     on<SendReportCampaign>(_onSendReport);
+    on<SendRegisterCampaign>(_onSendRegisterCampaign);
   }
 
   Future<void> _onSearchCampaigns(SearchCampaigns event, Emitter<CampaignState> emit) async {
@@ -47,6 +51,16 @@ class CampaignBloc extends Bloc<CampaignEvent, CampaignState> {
       emit(ReportCampaignSuccess());
     } catch (e) {
       emit(ReportCampaignFailure(e.toString()));
+    }
+  }
+
+  Future<void> _onSendRegisterCampaign(SendRegisterCampaign event, Emitter<CampaignState> emit) async {
+    emit(RegisterCampaignLoading());
+    try {
+      await sendRegisterCampaignUseCase(event.request);
+      emit(RegisterCampaignSuccess());
+    } catch (e) {
+      emit(RegisterCampaignFailure(e.toString()));
     }
   }
 }

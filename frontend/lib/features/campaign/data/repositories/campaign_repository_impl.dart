@@ -2,6 +2,7 @@ import 'package:frontend/features/campaign/data/datasource/campaign_remote_datas
 import 'package:frontend/features/campaign/data/models/campaign_response.dart';
 import 'package:frontend/features/campaign/data/models/campaign_search_request.dart';
 import 'package:frontend/features/campaign/data/models/campaign_search_response.dart';
+import 'package:frontend/features/campaign/data/models/register_campaign_request.dart';
 import 'package:frontend/features/campaign/data/models/report_campaign_request.dart';
 import 'package:frontend/features/campaign/domain/repositories/campaign_repository.dart';
 
@@ -32,5 +33,10 @@ class CampaignRepositoryImpl extends CampaignRepository {
   @override
   Future<void> sendReport(ReportCampaignRequest request) {
     return campaignRemoteDataSource.sendReport(request);
+  }
+
+  @override
+  Future<void> sendRegisterCampaign(RegisterCampaignRequest request) {
+    return campaignRemoteDataSource.sendRegisterCampaign(request);
   }
 }
