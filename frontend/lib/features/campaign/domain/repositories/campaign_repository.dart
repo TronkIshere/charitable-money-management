@@ -6,4 +6,5 @@ abstract class CampaignRepository {
   Future<List<CampaignResponse>> fetchCampaigns(List<String> filters);
   Future<CampaignSearchResponse> searchCampaigns(CampaignSearchRequest request);
   Future<CampaignResponse> getCampaignById(String id);
+  Future<CampaignSearchResponse> getLikedCampaigns(CampaignSearchRequest request);
 }

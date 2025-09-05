@@ -21,13 +21,18 @@ class CampaignRemoteDataSource {
       request.toJson(),
       (json) => CampaignSearchResponse.fromJson(json),
     );
-
     if (!response.success) throw response.error!;
     return response.result!;
   }
 
   Future<CampaignResponse> getCampaignById(String id) async {
     final response = await apiClient.get('/campaigns/$id', (json) => CampaignResponse.fromJson(json));
+    if (!response.success) throw response.error!;
+    return response.result!;
+  }
+
+  Future<CampaignSearchResponse> getLikedCampaigns(CampaignSearchRequest request) async {
+    final response = await apiClient.get('/campaigns/liked', (json) => CampaignSearchResponse.fromJson(json));
     if (!response.success) throw response.error!;
     return response.result!;
   }

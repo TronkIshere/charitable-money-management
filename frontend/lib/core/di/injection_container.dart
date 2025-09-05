@@ -13,11 +13,17 @@ import 'package:frontend/features/campaign/data/datasource/campaign_remote_datas
 import 'package:frontend/features/campaign/data/repositories/campaign_repository_impl.dart';
 import 'package:frontend/features/campaign/domain/repositories/campaign_repository.dart';
 import 'package:frontend/features/campaign/domain/usecase/fetch_campaigns_use_case.dart';
+import 'package:frontend/features/campaign/domain/usecase/get_liked_campaigns_use_case.dart';
 import 'package:frontend/features/campaign/domain/usecase/search_campaigns_use_case.dart';
 import 'package:frontend/features/home/data/datasource/home_remote_data_source.dart';
 import 'package:frontend/features/home/data/repositories/home_repository_impl.dart';
 import 'package:frontend/features/home/domain/repositories/home_repository.dart';
 import 'package:frontend/features/home/presentation/bloc/home_bloc.dart';
+import 'package:frontend/features/payment/data/datasource/payment_remote_data_source.dart';
+import 'package:frontend/features/payment/data/repositories/payment_repository_impl.dart';
+import 'package:frontend/features/payment/domain/repositories/payment_repository.dart';
+import 'package:frontend/features/payment/domain/usecase/get_transaction_detail_usecase.dart';
+import 'package:frontend/features/payment/presentation/bloc/payment_bloc.dart';
 import 'package:frontend/features/user/data/datasource/notification_remote_data_source.dart';
 import 'package:frontend/features/user/data/datasource/user_remote_data_source.dart';
 import 'package:frontend/features/user/data/repositories/notification_repository.dart';
@@ -47,6 +53,7 @@ Future<void> initDependencies() async {
   sl.registerLazySingleton<NotificationRemoteDataSource>(() => NotificationRemoteDataSource(apiClient: sl()));
   sl.registerLazySingleton<UserRemoteDataSource>(() => UserRemoteDataSource(apiClient: sl()));
   sl.registerLazySingleton<CampaignRemoteDataSource>(() => CampaignRemoteDataSource(apiClient: sl()));
+  sl.registerLazySingleton<PaymentRemoteDataSource>(() => PaymentRemoteDataSource(apiClient: sl()));
 
   // Repositories
   sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(authRemoteDataSource: sl()));
@@ -54,6 +61,7 @@ Future<void> initDependencies() async {
   sl.registerLazySingleton<NotificationRepository>(() => NotificationRepositoryImpl(remoteDataSource: sl()));
   sl.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(userDataSource: sl()));
   sl.registerLazySingleton<CampaignRepository>(() => CampaignRepositoryImpl(campaignRemoteDataSource: sl()));
+  sl.registerLazySingleton<PaymentRepository>(() => PaymentRepositoryImpl(paymentRemoteDataSource: sl()));
 
   // UseCases
   sl.registerLazySingleton(() => LoginUseCase(authRepository: sl()));
@@ -67,6 +75,8 @@ Future<void> initDependencies() async {
   sl.registerLazySingleton(() => MarkNotificationAsReadUseCase(notificationRepository: sl()));
   sl.registerLazySingleton(() => SearchNotificationsUseCase(notificationRepository: sl()));
   sl.registerLazySingleton(() => FetchUserProfileUseCase(userRepository: sl()));
+  sl.registerLazySingleton(() => GetTransactionDetailUseCase(paymentRepository: sl()));
+  sl.registerLazySingleton(() => GetLikedCampaignsUseCase(campaignRepository: sl()));
 
   // Blocs
   sl.registerFactory(
@@ -96,5 +106,7 @@ Future<void> initDependencies() async {
     ),
   );
 
-  sl.registerFactory(() => UserBloc(fetchUserProfileUseCase: sl()));
+  sl.registerFactory(() => UserBloc(fetchUserProfileUseCase: sl(), getLikedCampaignsUseCase: sl()));
+
+  sl.registerFactory(() => PaymentBloc(getTransactionDetailUseCase: sl()));
 }

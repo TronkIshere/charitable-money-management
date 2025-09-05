@@ -1,3 +1,4 @@
+import 'package:frontend/features/campaign/data/models/campaign_search_response.dart';
 import 'package:frontend/features/user/data/models/user_response.dart';
 
 abstract class UserState {}
@@ -14,4 +15,11 @@ class UserLoaded extends UserState {
 class UserError extends UserState {
   final String message;
   UserError(this.message);
+}
+
+class UserLikedCampaignsLoading extends UserState {}
+
+class UserLikedCampaignsLoaded extends UserState {
+  final CampaignSearchResponse likedCampaigns;
+  UserLikedCampaignsLoaded(this.likedCampaigns);
 }
