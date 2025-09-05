@@ -9,10 +9,14 @@ import 'package:frontend/features/auth/presentation/pages/login_page.dart';
 import 'package:frontend/features/auth/presentation/pages/register_page.dart';
 import 'package:frontend/features/campaign/presentation/pages/campaign_page.dart';
 import 'package:frontend/features/campaign/presentation/pages/campaigns_searching_page.dart';
+import 'package:frontend/features/campaign/presentation/pages/report_campaign_page.dart';
 import 'package:frontend/features/home/presentation/pages/home_page.dart';
 import 'package:frontend/features/home/presentation/pages/searching_page.dart';
+import 'package:frontend/features/ledger/presentation/pages/update_account_page.dart';
+import 'package:frontend/features/payment/presentation/pages/payment_details_page.dart';
 import 'package:frontend/features/payment/presentation/pages/payment_page.dart';
 import 'package:frontend/features/user/presentation/pages/introduction_page.dart';
+import 'package:frontend/features/user/presentation/pages/liked_campaign_page.dart';
 import 'package:frontend/features/user/presentation/pages/notifications_list_page.dart';
 import 'package:frontend/features/user/presentation/pages/user_profile_page.dart';
 
@@ -37,7 +41,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'ChatApp',
         theme: AppTheme.lightTheme,
-        home: const PaymentPage(),
+        home: const UpdateAccountPage(),
         routes: {
           '/login': (_) => const LoginPage(),
           '/register': (_) => const RegisterPage(),
@@ -50,6 +54,10 @@ class MyApp extends StatelessWidget {
           '/campaignsList': (_) => const CampaignsSearchingPage(),
           '/campaign': (_) => const CampaignPage(),
           '/payment': (_) => const PaymentPage(),
+          '/paymentDetails': (_) => const PaymentDetailsPage(),
+          '/likedCampaignList': (_) => const LikedCampaignPage(),
+          '/reportCampaign': (_) => ReportCampaignPage(),
+          '/updateAccount': (_) => UpdateAccountPage(),
         },
       ),
     );

@@ -21,6 +21,11 @@ import 'package:frontend/features/home/data/datasource/home_remote_data_source.d
 import 'package:frontend/features/home/data/repositories/home_repository_impl.dart';
 import 'package:frontend/features/home/domain/repositories/home_repository.dart';
 import 'package:frontend/features/home/presentation/bloc/home_bloc.dart';
+import 'package:frontend/features/ledger/data/datasource/ledger_remote_datasource.dart';
+import 'package:frontend/features/ledger/data/repositories/ledger_repository_impl.dart';
+import 'package:frontend/features/ledger/domain/repositories/ledger_repository.dart';
+import 'package:frontend/features/ledger/domain/usecase/send_update_account_use_case.dart';
+import 'package:frontend/features/ledger/presentation/bloc/ledger_bloc.dart';
 import 'package:frontend/features/payment/data/datasource/payment_remote_data_source.dart';
 import 'package:frontend/features/payment/data/repositories/payment_repository_impl.dart';
 import 'package:frontend/features/payment/domain/repositories/payment_repository.dart';
@@ -56,6 +61,7 @@ Future<void> initDependencies() async {
   sl.registerLazySingleton<UserRemoteDataSource>(() => UserRemoteDataSource(apiClient: sl()));
   sl.registerLazySingleton<CampaignRemoteDataSource>(() => CampaignRemoteDataSource(apiClient: sl()));
   sl.registerLazySingleton<PaymentRemoteDataSource>(() => PaymentRemoteDataSource(apiClient: sl()));
+  sl.registerLazySingleton<LedgerRemoteDataSource>(() => LedgerRemoteDataSource(apiClient: sl()));
 
   // Repositories
   sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(authRemoteDataSource: sl()));
@@ -64,6 +70,7 @@ Future<void> initDependencies() async {
   sl.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(userDataSource: sl()));
   sl.registerLazySingleton<CampaignRepository>(() => CampaignRepositoryImpl(campaignRemoteDataSource: sl()));
   sl.registerLazySingleton<PaymentRepository>(() => PaymentRepositoryImpl(paymentRemoteDataSource: sl()));
+  sl.registerLazySingleton<LedgerRepository>(() => LedgerRepositoryImpl(ledgerRemoteDataSource: sl()));
 
   // UseCases
   sl.registerLazySingleton(() => LoginUseCase(authRepository: sl()));
@@ -80,6 +87,7 @@ Future<void> initDependencies() async {
   sl.registerLazySingleton(() => GetTransactionDetailUseCase(paymentRepository: sl()));
   sl.registerLazySingleton(() => GetLikedCampaignsUseCase(campaignRepository: sl()));
   sl.registerLazySingleton(() => SendReportCampaignUseCase(campaignRepository: sl()));
+  sl.registerLazySingleton(() => SendUpdateAccountUseCase(ledgerRepository: sl()));
 
   // Blocs
   sl.registerFactory(
@@ -116,4 +124,6 @@ Future<void> initDependencies() async {
   sl.registerFactory(() => UserBloc(fetchUserProfileUseCase: sl(), getLikedCampaignsUseCase: sl()));
 
   sl.registerFactory(() => PaymentBloc(getTransactionDetailUseCase: sl()));
+
+  sl.registerFactory(() => LedgerBloc(sendUpdateAccountUseCase: sl()));
 }
