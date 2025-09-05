@@ -1,5 +1,6 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:frontend/core/api/api_client.dart';
+import 'package:frontend/features/admin/presentation/bloc/admin_bloc.dart';
 import 'package:frontend/features/auth/data/datasource/auth_remote_data_source.dart';
 import 'package:frontend/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:frontend/features/auth/domain/repositories/auth_repository.dart';
@@ -127,7 +128,6 @@ Future<void> initDependencies() async {
       getCampaignByIdUseCase: sl(),
       sendReportCampaignUseCase: sl(),
       sendRegisterCampaignUseCase: sl(),
-      getManageCampaignsListUseCase: sl(),
     ),
   );
 
@@ -136,4 +136,6 @@ Future<void> initDependencies() async {
   sl.registerFactory(() => PaymentBloc(getTransactionDetailUseCase: sl()));
 
   sl.registerFactory(() => LedgerBloc(sendUpdateAccountUseCase: sl()));
+
+  sl.registerFactory(() => AdminBloc(getManageCampaignsListUseCase: sl()));
 }

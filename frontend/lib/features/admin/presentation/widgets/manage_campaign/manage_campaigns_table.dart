@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/features/campaign/presentation/widgets/manage_campaign/manage_campaigns_button.dart';
+import 'package:frontend/features/admin/presentation/widgets/manage_campaign/manage_campaigns_button.dart';
 
 class ManageCampaignsTable extends StatelessWidget {
   final List<Map<String, dynamic>> campaigns;

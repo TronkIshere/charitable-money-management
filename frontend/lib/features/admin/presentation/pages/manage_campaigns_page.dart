@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/core/theme/theme.dart';
-import 'package:frontend/features/campaign/presentation/widgets/manage_campaign/manage_campaigns_appBar.dart';
-import 'package:frontend/features/campaign/presentation/widgets/manage_campaign/manage_campaigns_button.dart';
-import 'package:frontend/features/campaign/presentation/widgets/manage_campaign/manage_campaigns_pagination_controls.dart';
-import 'package:frontend/features/campaign/presentation/widgets/manage_campaign/manage_campaigns_search_bar.dart';
-import 'package:frontend/features/campaign/presentation/widgets/manage_campaign/manage_campaigns_table.dart';
+import 'package:frontend/features/admin/presentation/widgets/manage_campaign/manage_campaigns_appBar.dart';
+import 'package:frontend/features/admin/presentation/widgets/manage_campaign/manage_campaigns_button.dart';
+import 'package:frontend/features/admin/presentation/widgets/manage_campaign/manage_campaigns_pagination_controls.dart';
+import 'package:frontend/features/admin/presentation/widgets/manage_campaign/manage_campaigns_search_bar.dart';
+import 'package:frontend/features/admin/presentation/widgets/manage_campaign/manage_campaigns_table.dart';
 
 class ManageCampaignsPage extends StatefulWidget {
   const ManageCampaignsPage({super.key});
