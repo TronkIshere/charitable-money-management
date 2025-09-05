@@ -14,7 +14,9 @@ import 'package:frontend/features/campaign/data/repositories/campaign_repository
 import 'package:frontend/features/campaign/domain/repositories/campaign_repository.dart';
 import 'package:frontend/features/campaign/domain/usecase/fetch_campaigns_use_case.dart';
 import 'package:frontend/features/campaign/domain/usecase/get_liked_campaigns_use_case.dart';
+import 'package:frontend/features/campaign/domain/usecase/get_manage_campaigns_list_use_case.dart';
 import 'package:frontend/features/campaign/domain/usecase/search_campaigns_use_case.dart';
+import 'package:frontend/features/campaign/domain/usecase/send_register_campaign_use_case.dart';
 import 'package:frontend/features/campaign/domain/usecase/send_report_campaign_use_case.dart';
 import 'package:frontend/features/campaign/presentation/bloc/campaigns_bloc.dart';
 import 'package:frontend/features/home/data/datasource/home_remote_data_source.dart';
@@ -88,6 +90,8 @@ Future<void> initDependencies() async {
   sl.registerLazySingleton(() => GetLikedCampaignsUseCase(campaignRepository: sl()));
   sl.registerLazySingleton(() => SendReportCampaignUseCase(campaignRepository: sl()));
   sl.registerLazySingleton(() => SendUpdateAccountUseCase(ledgerRepository: sl()));
+  sl.registerLazySingleton(() => SendRegisterCampaignUseCase(campaignRepository: sl()));
+  sl.registerLazySingleton(() => GetManageCampaignsListUseCase(campaignRepository: sl()));
 
   // Blocs
   sl.registerFactory(
@@ -118,7 +122,13 @@ Future<void> initDependencies() async {
   );
 
   sl.registerFactory(
-    () => CampaignBloc(searchCampaignsUseCase: sl(), getCampaignByIdUseCase: sl(), sendReportCampaignUseCase: sl()),
+    () => CampaignBloc(
+      searchCampaignsUseCase: sl(),
+      getCampaignByIdUseCase: sl(),
+      sendReportCampaignUseCase: sl(),
+      sendRegisterCampaignUseCase: sl(),
+      getManageCampaignsListUseCase: sl(),
+    ),
   );
 
   sl.registerFactory(() => UserBloc(fetchUserProfileUseCase: sl(), getLikedCampaignsUseCase: sl()));

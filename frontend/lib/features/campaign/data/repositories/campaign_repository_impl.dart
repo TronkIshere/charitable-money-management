@@ -39,4 +39,9 @@ class CampaignRepositoryImpl extends CampaignRepository {
   Future<void> sendRegisterCampaign(RegisterCampaignRequest request) {
     return campaignRemoteDataSource.sendRegisterCampaign(request);
   }
+
+  @override
+  Future<CampaignSearchResponse> getManageCampaignsList(CampaignSearchRequest request) {
+    return campaignRemoteDataSource.getManageCampaignsList(request);
+  }
 }

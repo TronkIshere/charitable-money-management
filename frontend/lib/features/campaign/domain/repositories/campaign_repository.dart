@@ -11,4 +11,5 @@ abstract class CampaignRepository {
   Future<CampaignSearchResponse> getLikedCampaigns(CampaignSearchRequest request);
   Future<void> sendReport(ReportCampaignRequest request);
   Future<void> sendRegisterCampaign(RegisterCampaignRequest request);
+  Future<CampaignSearchResponse> getManageCampaignsList(CampaignSearchRequest request);
 }

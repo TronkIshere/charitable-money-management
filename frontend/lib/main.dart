@@ -9,6 +9,7 @@ import 'package:frontend/features/auth/presentation/pages/login_page.dart';
 import 'package:frontend/features/auth/presentation/pages/register_page.dart';
 import 'package:frontend/features/campaign/presentation/pages/campaign_page.dart';
 import 'package:frontend/features/campaign/presentation/pages/campaigns_searching_page.dart';
+import 'package:frontend/features/campaign/presentation/pages/manage_campaigns_page.dart';
 import 'package:frontend/features/campaign/presentation/pages/register_campaign_page.dart';
 import 'package:frontend/features/campaign/presentation/pages/report_campaign_page.dart';
 import 'package:frontend/features/home/presentation/pages/home_page.dart';
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'ChatApp',
         theme: AppTheme.lightTheme,
-        home: const RegisterCampaignPage(),
+        home: const ManageCampaignsPage(),
         routes: {
           '/login': (_) => const LoginPage(),
           '/register': (_) => const RegisterPage(),
@@ -60,6 +61,7 @@ class MyApp extends StatelessWidget {
           '/reportCampaign': (_) => ReportCampaignPage(),
           '/updateAccount': (_) => UpdateAccountPage(),
           "/registerCampaign": (_) => RegisterCampaignPage(),
+          '/manageCampaign': (_) => ManageCampaignsPage(),
         },
       ),
     );

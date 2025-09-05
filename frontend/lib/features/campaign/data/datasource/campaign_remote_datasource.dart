@@ -58,4 +58,10 @@ class CampaignRemoteDataSource {
     );
     if (!response.success) throw response.error!;
   }
+
+  Future<CampaignSearchResponse> getManageCampaignsList(CampaignSearchRequest request) async {
+    final response = await apiClient.get('/campaigns/manageCampaign', (json) => CampaignSearchResponse.fromJson(json));
+    if (!response.success) throw response.error!;
+    return response.result!;
+  }
 }
