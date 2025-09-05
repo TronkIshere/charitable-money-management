@@ -7,9 +7,11 @@ import 'package:frontend/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:frontend/features/auth/presentation/pages/forgot_password_page.dart';
 import 'package:frontend/features/auth/presentation/pages/login_page.dart';
 import 'package:frontend/features/auth/presentation/pages/register_page.dart';
+import 'package:frontend/features/campaign/presentation/pages/campaign_page.dart';
 import 'package:frontend/features/campaign/presentation/pages/campaigns_searching_page.dart';
 import 'package:frontend/features/home/presentation/pages/home_page.dart';
 import 'package:frontend/features/home/presentation/pages/searching_page.dart';
+import 'package:frontend/features/payment/presentation/pages/payment_page.dart';
 import 'package:frontend/features/user/presentation/pages/introduction_page.dart';
 import 'package:frontend/features/user/presentation/pages/notifications_list_page.dart';
 import 'package:frontend/features/user/presentation/pages/user_profile_page.dart';
@@ -35,7 +37,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'ChatApp',
         theme: AppTheme.lightTheme,
-        home: const CampaignsSearchingPage(),
+        home: const PaymentPage(),
         routes: {
           '/login': (_) => const LoginPage(),
           '/register': (_) => const RegisterPage(),
@@ -46,6 +48,8 @@ class MyApp extends StatelessWidget {
           '/introduction': (_) => const IntroductionPage(),
           '/userProfile': (_) => const UserProfilePage(),
           '/campaignsList': (_) => const CampaignsSearchingPage(),
+          '/campaign': (_) => const CampaignPage(),
+          '/payment': (_) => const PaymentPage(),
         },
       ),
     );
