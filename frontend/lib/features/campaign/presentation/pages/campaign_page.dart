@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/features/campaign/presentation/widgets/campaign_activities.dart';
-import 'package:frontend/features/campaign/presentation/widgets/campaign_banner.dart';
-import 'package:frontend/features/campaign/presentation/widgets/campaign_bottomBar.dart';
-import 'package:frontend/features/campaign/presentation/widgets/campaign_description.dart';
+import 'package:frontend/features/campaign/presentation/widgets/campaign/campaign_activities.dart';
+import 'package:frontend/features/campaign/presentation/widgets/campaign/campaign_banner.dart';
+import 'package:frontend/features/campaign/presentation/widgets/campaign/campaign_bottomBar.dart';
+import 'package:frontend/features/campaign/presentation/widgets/campaign/campaign_description.dart';
 
 class CampaignPage extends StatefulWidget {
   const CampaignPage({super.key});

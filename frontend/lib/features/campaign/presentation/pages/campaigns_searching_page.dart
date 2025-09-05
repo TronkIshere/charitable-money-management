@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/features/campaign/presentation/widgets/campaigns_pagination_controls.dart';
-import 'package:frontend/features/campaign/presentation/widgets/campaigns_searching_appBar.dart';
-import 'package:frontend/features/campaign/presentation/widgets/campaigns_searching_campaigns_list.dart';
-import 'package:frontend/features/campaign/presentation/widgets/campaigns_searching_divider_line.dart';
-import 'package:frontend/features/campaign/presentation/widgets/campaigns_searching_filter_bar.dart';
+import 'package:frontend/features/campaign/presentation/widgets/campaigns_searching/campaigns_pagination_controls.dart';
+import 'package:frontend/features/campaign/presentation/widgets/campaigns_searching/campaigns_searching_appBar.dart';
+import 'package:frontend/features/campaign/presentation/widgets/campaigns_searching/campaigns_searching_campaigns_list.dart';
+import 'package:frontend/features/campaign/presentation/widgets/campaigns_searching/campaigns_searching_divider_line.dart';
+import 'package:frontend/features/campaign/presentation/widgets/campaigns_searching/campaigns_searching_filter_bar.dart';
 
 class CampaignsSearchingPage extends StatefulWidget {
   const CampaignsSearchingPage({super.key});

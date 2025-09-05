@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/features/campaign/presentation/widgets/campaigns_searching_campaigns_item.dart';
+import 'package:frontend/features/campaign/presentation/widgets/campaigns_searching/campaigns_searching_campaigns_item.dart';
 
 class LikedCampaignList extends StatelessWidget {
   final List<Map<String, dynamic>> campaigns;
