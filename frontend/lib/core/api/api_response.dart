@@ -12,6 +12,10 @@ class ApiResponse<T> {
       error: json['error'] != null ? ApiError.fromJson(json['error']) : null,
     );
   }
+
+  factory ApiResponse.failure(String message) {
+    return ApiResponse<T>(success: false, error: ApiError(code: -1, message: message));
+  }
 }
 
 class ApiError {

@@ -21,3 +21,14 @@ class CampaignDetailLoaded extends CampaignState {
   final CampaignResponse campaign;
   CampaignDetailLoaded({required this.campaign});
 }
+
+class ReportCampaignInitial extends CampaignState {}
+
+class ReportCampaignLoading extends CampaignState {}
+
+class ReportCampaignSuccess extends CampaignState {}
+
+class ReportCampaignFailure extends CampaignState {
+  final String message;
+  ReportCampaignFailure(this.message);
+}

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:frontend/core/api/api_response.dart';
@@ -10,10 +11,10 @@ class ApiClient {
 
   ApiClient({required this.baseUrl});
 
-  Future<Map<String, String>> _getHeaders() async {
+  Future<Map<String, String>> _getHeaders({bool multipart = false}) async {
     final token = await _storage.read(key: 'token');
     return {
-      'Content-Type': 'application/json',
+      if (!multipart) 'Content-Type': 'application/json',
       if (token != null && token.isNotEmpty) 'Authorization': 'Bearer $token',
     };
   }
@@ -30,13 +31,42 @@ class ApiClient {
     return _handleResponse(response, fromJsonT);
   }
 
+  Future<ApiResponse<T>> multipartPost<T>(
+    String path, {
+    required Map<String, String> fields,
+    required List<File> files,
+    T Function(dynamic)? fromJsonT,
+  }) async {
+    final headers = await _getHeaders(multipart: true);
+    final uri = Uri.parse('$baseUrl$path');
+
+    final request = http.MultipartRequest('POST', uri);
+    request.headers.addAll(headers);
+
+    request.fields.addAll(fields);
+
+    for (var file in files) {
+      final multipartFile = await http.MultipartFile.fromPath('attachments', file.path);
+      request.files.add(multipartFile);
+    }
+
+    final streamedResponse = await request.send();
+    final response = await http.Response.fromStream(streamedResponse);
+
+    try {
+      final Map<String, dynamic> json = jsonDecode(response.body);
+      if (fromJsonT != null) {
+        return ApiResponse<T>.fromJson(json, fromJsonT);
+      } else {
+        return ApiResponse<T>.fromJson(json, (data) => null as T);
+      }
+    } catch (e) {
+      return ApiResponse<T>(success: false, error: ApiError(code: -1, message: e.toString()));
+    }
+  }
+
   ApiResponse<T> _handleResponse<T>(http.Response response, T Function(dynamic) fromJsonT) {
     final Map<String, dynamic> json = jsonDecode(response.body);
-
-    if (json['success'] == true) {
-      return ApiResponse<T>.fromJson(json, fromJsonT);
-    } else {
-      return ApiResponse<T>.fromJson(json, fromJsonT);
-    }
+    return ApiResponse<T>.fromJson(json, fromJsonT);
   }
 }

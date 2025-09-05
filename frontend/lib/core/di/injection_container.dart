@@ -15,6 +15,8 @@ import 'package:frontend/features/campaign/domain/repositories/campaign_reposito
 import 'package:frontend/features/campaign/domain/usecase/fetch_campaigns_use_case.dart';
 import 'package:frontend/features/campaign/domain/usecase/get_liked_campaigns_use_case.dart';
 import 'package:frontend/features/campaign/domain/usecase/search_campaigns_use_case.dart';
+import 'package:frontend/features/campaign/domain/usecase/send_report_campaign_use_case.dart';
+import 'package:frontend/features/campaign/presentation/bloc/campaigns_bloc.dart';
 import 'package:frontend/features/home/data/datasource/home_remote_data_source.dart';
 import 'package:frontend/features/home/data/repositories/home_repository_impl.dart';
 import 'package:frontend/features/home/domain/repositories/home_repository.dart';
@@ -77,6 +79,7 @@ Future<void> initDependencies() async {
   sl.registerLazySingleton(() => FetchUserProfileUseCase(userRepository: sl()));
   sl.registerLazySingleton(() => GetTransactionDetailUseCase(paymentRepository: sl()));
   sl.registerLazySingleton(() => GetLikedCampaignsUseCase(campaignRepository: sl()));
+  sl.registerLazySingleton(() => SendReportCampaignUseCase(campaignRepository: sl()));
 
   // Blocs
   sl.registerFactory(
@@ -104,6 +107,10 @@ Future<void> initDependencies() async {
       markNotificationAsReadUseCase: sl(),
       searchNotificationsUseCase: sl(),
     ),
+  );
+
+  sl.registerFactory(
+    () => CampaignBloc(searchCampaignsUseCase: sl(), getCampaignByIdUseCase: sl(), sendReportCampaignUseCase: sl()),
   );
 
   sl.registerFactory(() => UserBloc(fetchUserProfileUseCase: sl(), getLikedCampaignsUseCase: sl()));
